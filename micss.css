@@ -1,0 +1,42 @@
+iframe {
+display:block;
+text-align: center;
+}
+
+body{
+	
+	text-align: center;
+	margin: 3em;
+	background-color: white;
+}
+h4{
+	font-size: 2em;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color:grey
+}
+h5{
+	color: darkgray;
+	font-size: 1.2em;
+}
+p {
+	size: 10px;
+	color: rgb(68, 68, 68);
+}
+#contacto{
+	font-size: 1.2em;
+	padding: .4em;
+	border-radius: .4em;
+	text-align: center;
+}
+button {
+	background-color: chartreuse;
+}
+
+#contenedor {
+	font-size: 2em;
+	color: "yellowgreen";
+	font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	text-align: center;
+	color: chartreuse;
+	vertical-align:top
+}
