@@ -1,73 +1,82 @@
-const config = {
-    count: 20,
-    separation: 56,
-    width: 400,
-    speed: 0.0015,
-    warity: 0.2
-};
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var c = {}
+var cw = canvas.width = 600;
+c.x = cw / 2;
+var ch = canvas.height = 600;
+c.y = ch / 2;
+ctx.lineJoin = "round";
+ctx.strokeStyle = "#fff";
+ctx.fillStyle = "rgba(0,0,0,1)";
+var rad = Math.PI / 180;
+var x, y;
 
+var amplitude = 5;
+var frequency = .02;
+var phi = 0;
 
-let lines = [];
-let time = 0;
+var increment = 0.05;
+var lines = [];
 
-const gaussianCurve = x => Math.exp(-(Math.pow(x / 30, 2) / 2)) * 100;
+function SquigglyLine(y) {
+  this.y = y;
+  this.xoff = Math.random() * 10000;
+  this.Xoff = this.xoff;
+  this.phi = Math.random() * 10000;
+  this.draw = function(i) {
+    ctx.beginPath();
 
-function setup() {
-    createCanvas(400, 550);
-    background(0);
+    this.xoff = this.Xoff; // reset xoff;
 
-    for (let i = 0; i < config.count; i++) {
-        lines.push(new DivisionLine(i * config.separation));
+    for (var x = -2; x < cw + 2; x++) {
+
+      if (x > cw / 3 && x < 2 * cw / 3) {
+        var k = map(x, cw / 3, 2 * cw / 3, 0, 180);
+      } else {
+        k = 0;
+      }
+
+      var y = -Math.abs(Math.sin((x + noise(this.xoff) * 100) * frequency + this.phi) * (amplitude + Math.sin(k * rad) * 50)) + this.y;
+
+      ctx.lineTo(x, y);
+
+      this.xoff += increment;
+
     }
+    ctx.lineTo(cw + 2, ch + 2);
+    ctx.lineTo(-2, ch + 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+  }
 }
 
-let timeStamp = Date.now();
-function draw() {
-    background(0);
-    const dt = Date.now() - timeStamp;
-    //center it
-    translate(
-      width / 2 - config.width / 2,
-      height / 1.8 - (config.count * config.separation) / 2
-    );
+for (var y = 60; y < ch; y += 16) {
 
-    for (const line of lines) {
-        line.draw();
-    }
+  var line = new SquigglyLine(y);
+  lines.push(line);
 
-    time += config.speed * dt * 0.057;
-    timeStamp = Date.now();
 }
 
-class DivisionLine {
-    baseline;
-    width = config.width;
-    sampling = 3;
-    timeOffset = 0;
-    patternOffset = random(300);
+function Draw() {
+  requestId = window.requestAnimationFrame(Draw);
+  ctx.fillRect(0, 0, cw, ch);
 
-    constructor(baseline) {
-        this.baseline = baseline;
-    }
+  noiseDetail(2, .5);
 
-    draw() {
-        stroke(25);
-        strokeWeight(2);
-        fill(0);
+  for (var i = 0; i < lines.length; i++) {
+    lines[i].phi += 1 / 30;
+    lines[i].draw(i);
+  }
 
-        let noiseOffset = this.patternOffset;
-        const steps = this.width / this.sampling;
+}
 
-        beginShape();
-        for (let i = 0; i < steps; i++) {
-            const noiseValue = noise(noiseOffset, time);
-            const gaussValue = gaussianCurve(i - (steps / 2)) + 10;
+requestId = window.requestAnimationFrame(Draw);
 
-            const value = abs(map(noiseValue, 0, 1, -gaussValue, gaussValue));
-
-            vertex(this.sampling * i, this.baseline - value);
-            noiseOffset += config.warity;
-        }
-        endShape();
-    };
+function map(n, a, b, _a, _b) {
+  var d = b - a;
+  var _d = _b - _a;
+  var u = _d / d;
+  return _a + (n - a) * u;
 }

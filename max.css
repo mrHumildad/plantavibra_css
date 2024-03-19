@@ -90,3 +90,10 @@ footer button {
 footer button:hover {
     border: 3px solid var(--rojo);
 }
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    margin: calc(50vh - 300px) auto 0;
+    background-color: #000;
+  }
