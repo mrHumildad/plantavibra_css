@@ -1,0 +1,192 @@
+
+:root {
+    --accent: #b8fe1eff;
+    --dark: rgb(79, 79, 3);
+    --white: rgb(240, 244, 237);
+    --black: rgb(3, 34, 1);
+    --red: #a71d31ff;
+    --gradient-top: linear-gradient(0deg, #b8fe1eff, #2d2d2aff, #d2d6efff, #50808eff, #a71d31ff);
+}
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: var(--white);
+    text-align: center;
+    font-family: "Kode Mono", monospace;
+}
+#logo {
+    height: 20vh;
+    width: 0vh;
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+    animation-name: logowave;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+@keyframes logowave {
+    0%{
+        width: 0vh;
+    }
+    10%{
+        width: 45vh;
+    }
+    90%{
+        width: 45vh;
+    }
+    100%{
+        width: 0vh;
+    }
+}
+h1 {
+    color: var(--accent);
+    text-shadow: #000 5px 5px;
+    font-size: 5rem;
+    width: 100%;
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    line-height: 5rem;
+}
+h2 {
+    color: var(--black);
+    text-shadow: var(--accent) 3px 3px;
+}
+
+.next {
+    position: relative;
+    background-size: contain;
+    width: 80vW;
+    height: 80vw;
+    border-radius: 5%;
+    margin: auto;
+    border: 10px solid var(--red);
+    box-shadow: var(--black) 3px 3px;
+    text-decoration: none;
+}
+.bolo {
+    position: relative;
+    background-size: cover;
+    width: 80vW;
+    height: 80vw;
+    border-radius: 5%;
+    margin: auto;
+    border: 10px solid var(--accent);
+    box-shadow: var(--dark) 3px 3px;
+    text-decoration: none;
+}
+
+
+#bolos-container {
+    gap: 5vh;
+    width: 90%;
+    margin: auto;
+    margin-top: 7vw;
+    display: flex;
+    flex-direction: column;
+}
+.bolo-title {
+    margin: auto;
+    font-weight: 800;
+    font-size: 7vw;
+    z-index: 1;
+    color: var(--accent);
+    text-shadow: 2px 2px 4px var(--dark);
+}
+.next-title {
+    margin: auto;
+    font-weight: 900;
+    font-size: 7vw;
+    z-index: 1;
+    color: var(--red);
+    text-shadow: 2px 2px 4px var(--black);
+}
+blockquote {
+    margin: 0 auto;
+}
+p {
+    color: var(--gris);
+    padding: 0 3vw 0 3vw;
+    max-width: 500px;
+    margin : auto;
+    margin-bottom: 3vh;
+}
+footer {
+    position: relative;
+    margin-top: 5vh;
+    background-color: var(--accent); /* Use your dark color for the background */
+    padding:  0;
+    text-align: center;
+    border-top: 3px solid var(--dark);
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.social-links {
+    display: flex;
+    height: 100%;
+    justify-content: center; /* Center the logos */
+    align-items: center; /* Vertically align the logos */
+    gap: 30px; /* Add space between the logos */
+}
+
+.social-links a {
+    text-decoration: none;
+}
+
+.social-links img {
+    width: 8vh; /* Set a consistent width */
+    height: 8vh; /* Set a consistent height */
+    object-fit: contain; /* Ensure logos maintain aspect ratio */
+    border-radius: 10%; /* Optional: Add slight rounding */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.social-links img:hover {
+    transform: scale(1.3); /* Slight zoom on hover */
+}
+/* Tablet screens and larger */
+@media (min-width: 768px) {
+    .bolo, .next {
+			  margin: 0;
+        width: 50vw; /* Reduce width to fit more content */
+        height: 50vw; /* Adjust height accordingly */
+        border-radius: 3%; /* Slightly reduce the rounding */
+    }
+
+    #bolos-container {
+        flex-direction: row; /* Display items side by side */
+        flex-wrap: wrap; /* Allow wrapping if there are many items */
+        gap: 3vw; /* Adjust gap for side-by-side spacing */
+    }
+    .bolo-title {
+        font-size: 5vw; /* Adjust font size for tablets */
+        text-shadow: 3px 3px 5px var(--dark); /* Optional: Adjust shadow */
+    }
+}
+
+/* Desktop screens and larger */
+@media (min-width: 1024px) {
+    .bolo, .next{
+        width: 30vw; /* Further reduce width */
+        height: 30vw; /* Match height to width */
+        border-radius: 2%; /* Further reduce border radius */
+    }
+
+    #bolos-container {
+        width: 80%; /* Make the container slightly smaller */
+        margin-top: 5vw; /* Adjust top margin */
+        gap: 2vw; /* Adjust gap for desktop layout */
+    }
+    
+    .bolo-title {
+        font-size: 3rem; /* Set a fixed font size for desktops */
+        text-shadow: 4px 4px 6px var(--dark); /* Optional: Adjust shadow */
+    }
+    
+}
