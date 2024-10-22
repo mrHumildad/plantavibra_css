@@ -15,37 +15,68 @@ body {
     text-align: center;
     font-family: "Kode Mono", monospace;
 }
-#logo {
-    height: 20vh;
-    width: 0vh;
-    margin-top: 3vh;
-    margin-bottom: 2vh;
+#logo-next {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    height: 100%;
+    animation-name: logowave-next;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+.intro #logo {
+    position: absolute;
+    left: 50%;
+    top: 50%; /* Add top: 50% for vertical centering */
+    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+    max-height: 80%;
+    opacity: 0.1;
+    z-index: -1;
     animation-name: logowave;
-    animation-duration: 8s;
+    animation-duration: 10s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
 }
 @keyframes logowave {
     0%{
-        width: 0vh;
+        width: 40%;
     }
-    10%{
-        width: 45vh;
-    }
-    90%{
-        width: 45vh;
+    /* 10%{
+        width: 90%;
+    } */
+    50%{
+        width: 90%;
+    opacity: 0.2;
+
     }
     100%{
-        width: 0vh;
+        width: 40%;
+    }
+}
+@keyframes logowave-next {
+    0%{
+        width: 0%;
+    }
+    10%{
+        width: 90%;
+    }
+    90%{
+        width: 90%;
+    }
+    100%{
+        width: 0%;
     }
 }
 h1 {
     color: var(--accent);
     text-shadow: #000 5px 5px;
-    font-size: 5rem;
+    font-size: 8vh;
     width: 100%;
     display: flex;
     margin: auto;
+    margin-top: 3vh;
     flex-wrap: wrap;
     justify-content: center;
     line-height: 5rem;
@@ -55,17 +86,17 @@ h2 {
     text-shadow: var(--accent) 3px 3px;
 }
 
-.next {
-    position: relative;
-    background-size: contain;
-    width: 80vW;
-    height: 80vw;
+.form-butt {
+
+    color: var(--white);
+    background-color: var(--black);
+    border: 7px solid var(--accent);
     border-radius: 5%;
-    margin: auto;
-    border: 10px solid var(--red);
+    padding: 5px;
     box-shadow: var(--black) 3px 3px;
-    text-decoration: none;
+    font-size: 3vw;
 }
+
 .bolo {
     position: relative;
     background-size: cover;
@@ -77,15 +108,73 @@ h2 {
     box-shadow: var(--dark) 3px 3px;
     text-decoration: none;
 }
+.next-bolo {
+    border-color: var(--red);
+    box-shadow: var(--black) 3px 3px;
+    animation-name: borderglow;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    background-color: var(--black);
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
 
+}
+@keyframes borderglow {
+    0%{
+        border-color: var(--red);
+        color: var(--red);
+    }
+    80%{
+        border-color: var(--black);
+        color: var(--black);
+    }
+    80%{
+        border-color: var(--black);
+        color: var(--black);
+    }
+    100%{
+        border-color: var(--red);
+        color: var(--red);
+    }
+}
+.next-logo {
+    height: 10vh;
+    width: 10vh;
+    margin: auto;
+}
+.info-butt {
+    position: absolute;
+    right: 3%;
+    bottom: 3%;
+    background-color: var(--dark);
+    color: var(--accent);
+    padding: 7px;
+    border-radius: 50%;
+    font-size: 4vw;
+    font-weight: 700;
+    border: 5px solid var(--accent);
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+    z-index: 5;
+}
+.info-butt:hover {
+    transform: scale(1.3); /* Slight zoom on hover */
+}
+.countdown {
+    position: absolute;
+    left: 3%;
+    bottom: 3%;
+    font-size: 4vw;
+    font-weight: 700;
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
 
+}
 #bolos-container {
     gap: 5vh;
-    width: 90%;
     margin: auto;
     margin-top: 7vw;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .bolo-title {
     margin: auto;
@@ -96,12 +185,20 @@ h2 {
     text-shadow: 2px 2px 4px var(--dark);
 }
 .next-title {
-    margin: auto;
     font-weight: 900;
-    font-size: 7vw;
-    z-index: 1;
     color: var(--red);
     text-shadow: 2px 2px 4px var(--black);
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+
+}
+.next-info {
+    color: var(--red);
+    border-color: var(--red);
+    background-color: var(--black);
+    animation-name: borderglow;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 blockquote {
     margin: 0 auto;
@@ -113,13 +210,18 @@ p {
     margin : auto;
     margin-bottom: 3vh;
 }
+p a {
+    font-weight: 700;
+    text-shadow: var(--accent) 1px 1px;
+
+}
 footer {
     position: relative;
     margin-top: 5vh;
     background-color: var(--accent); /* Use your dark color for the background */
     padding:  0;
     text-align: center;
-    border-top: 3px solid var(--dark);
+    border-top: 8px solid var(--dark);
 }
 
 a {
@@ -135,10 +237,9 @@ a {
     gap: 30px; /* Add space between the logos */
 }
 
-.social-links a {
-    text-decoration: none;
+.intro {
+    margin-bottom: 8vh;
 }
-
 .social-links img {
     width: 8vh; /* Set a consistent width */
     height: 8vh; /* Set a consistent height */
@@ -150,43 +251,52 @@ a {
 .social-links img:hover {
     transform: scale(1.3); /* Slight zoom on hover */
 }
-/* Tablet screens and larger */
 @media (min-width: 768px) {
-    .bolo, .next {
-			  margin: 0;
-        width: 50vw; /* Reduce width to fit more content */
-        height: 50vw; /* Adjust height accordingly */
-        border-radius: 3%; /* Slightly reduce the rounding */
+    h1 {
+        font-size: 18vh;
     }
-
     #bolos-container {
-        flex-direction: row; /* Display items side by side */
-        flex-wrap: wrap; /* Allow wrapping if there are many items */
-        gap: 3vw; /* Adjust gap for side-by-side spacing */
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     .bolo-title {
-        font-size: 5vw; /* Adjust font size for tablets */
-        text-shadow: 3px 3px 5px var(--dark); /* Optional: Adjust shadow */
+        font-size: 4vw;
+    }
+    .info-butt {
+        font-size: 2vw;
+    }
+    .bolo {
+        width: 40vW;
+        height: 40vw;
+        margin: 0;
     }
 }
 
-/* Desktop screens and larger */
 @media (min-width: 1024px) {
-    .bolo, .next{
-        width: 30vw; /* Further reduce width */
-        height: 30vw; /* Match height to width */
-        border-radius: 2%; /* Further reduce border radius */
+    /* h1 {
+        font-size: 12vw;
     }
-
+    h2 {
+        font-size: 8vh;
+    }
+    p {
+        font-size: 4vw;
+    } */
     #bolos-container {
-        width: 80%; /* Make the container slightly smaller */
-        margin-top: 5vw; /* Adjust top margin */
-        gap: 2vw; /* Adjust gap for desktop layout */
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
-    
     .bolo-title {
-        font-size: 3rem; /* Set a fixed font size for desktops */
-        text-shadow: 4px 4px 6px var(--dark); /* Optional: Adjust shadow */
+        font-size: 35px;
     }
-    
+    .info-butt, .countdown {
+        font-size: 28px;
+    }
+    .bolo {
+        width: 300px;
+        height: 300px;
+        margin: 0;
+    }
 }
