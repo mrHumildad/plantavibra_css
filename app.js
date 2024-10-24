@@ -2,10 +2,10 @@ const container = document.getElementById("bolos-container")
 const next = document.getElementById("next")
 const data = {
     next: {
-      title: '#05 ??????',
+      title: '#05 ANTIC FORN VKK',
       img: './img/fondonext.png',
-      infoLink: '',
-      date: 'May 28, 2024 23:59:59',
+      infoLink: './boloPages/forn.html',
+      date: 'Oct 25, 2024 20:29:59',
       place: 'Antic Forn de VallCarca'
     },
     bolos: [
@@ -39,33 +39,33 @@ const data = {
       },
     ]
 }
-/* function updateCountdown() {
+const add0 = (n) => String(n)[1] ? String(n) : '0' + String(n);
+
+function updateCountdown(date) {
+  let countdown = document.getElementById('countdown')
+  let deadlineTime = new Date(date);
+  console.log(deadlineTime)
+    //console.log(deadlineTime)
+    deadlineTime.setDate(deadlineTime.getDate());
+    let deadline = deadlineTime.getTime();
   if (countdownInterval !== null) {
     // Getting current time in required format
     let now = new Date().getTime();    
     let timeToLive = deadline - now;
-  
+    if (timeToLive < 0) {
+      countdown.innerText =  '00:00:00:00';
+      return;
+    }
     // Getting value of days, hours, minutes, seconds
     let days = Math.floor(timeToLive / (1000 * 60 * 60 * 24));
     let hours = Math.floor((timeToLive % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((timeToLive % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((timeToLive % (1000 * 60)) / 1000);
-  
-    let countdown = document.getElementById('countdown')
-
     // If you have many countdowns, you could fill all the tags using the classname
-    countdown.innerText = 
-  
-    // Output for over time
-    if (timeToLive < 0) {
-      countdownInterval && clearInterval(countdownInterval);
-      Array.from(daysElements).forEach(el => el.innerHTML = 0);
-      Array.from(hoursElements).forEach(el => el.innerHTML = 0);
-      Array.from(minutesElements).forEach(el => el.innerHTML = 0);
-      Array.from(secondsElements).forEach(el => el.innerHTML = 0);
-    }
+    countdown.innerText = add0(days) + ':' + add0(hours) + ':' + add0(minutes) + ':' + add0(seconds);
+    console.log(countdown.innerText)
   }
-} */
+}
   if (data.next) {
     let nextBolo = document.createElement('div');
     nextBolo.classList.add("bolo", "next-bolo");
@@ -82,16 +82,10 @@ const data = {
     boloTitle.classList.add("bolo-title", "next-title");
     let textoTitulo = document.createTextNode(data.next.title);
     boloTitle.appendChild(textoTitulo);
-    let countdown = document.createElement('span');
-
-    let deadlineTime = new Date(data.next.date);
-    //console.log(deadlineTime)
-    deadlineTime.setDate(deadlineTime.getDate());
-    let deadline = deadlineTime.getTime();
-    
-    
-    countdown.appendChild(document.createTextNode(data.next.date));
+    let countdown = document.createElement('span');  
+    //scountdown.appendChild(document.createTextNode(data.next.date));
     countdown.classList.add('countdown');
+    countdown.id = 'countdown';
     nextBolo.appendChild(boloTitle);
     nextBolo.appendChild(countdown)
     nextBolo.appendChild(boloInfo);
@@ -124,6 +118,4 @@ for (let i = 0; i < bolos.length; i++) {
 }
 container.append(frag)
 
-let countdownInterval = null;
-updateCountdown();    
-countdownInterval = setInterval(updateCountdown, 1000);
+let countdownInterval = setInterval(() => updateCountdown(data.next.date), 1000);
