@@ -13,7 +13,7 @@ const data = {
         title: '#05 ANTIC FORN VKK',
         img: './img/fondonext.png',
         infoLink: './boloPages/forn.html',
-        date: 'Oct 25, 2024 20:29:59',
+        date: 'Oct 25, 2024 00:29:59',
         place: 'Antic Forn de VallCarca'
       },
     ],
@@ -85,9 +85,9 @@ const next2html = (next, i) => {
   nextImg.classList.add('logo-next')
   nextImg.id= 'logo-next-' + i;
 
-  const animSpeed = Math.round(timeRange(next.date) / 86400000) + 's';
-  nextBolo.style.animationDuration = animSpeed;
-  nextImg.style.animationDuration = animSpeed; 
+  let animSpeed = Math.round(timeRange(next.date) / 86400000) + 0.5;
+  nextBolo.style.animationDuration = animSpeed + 's';
+  nextImg.style.animationDuration = animSpeed + 's'; 
   
   let boloTitle = document.createElement("span");
   boloTitle.classList.add("bolo-title", "next-title");
